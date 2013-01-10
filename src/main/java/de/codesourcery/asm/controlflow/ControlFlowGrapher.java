@@ -73,9 +73,6 @@ public class ControlFlowGrapher
                         break;
                     case "-dir":
                         main.outputDir = new File( args[i+1 ] );
-                        if ( ! main.outputDir.exists() || ! main.outputDir.isDirectory() ) {
-                            throw new RuntimeException("Output directory "+main.outputDir+" does not exist/is no directory");
-                        }
                         i++;
                         break;
                     case "-search": // hack for http://bugs.sun.com/view_bug.do?bug_id=4459663
@@ -172,7 +169,11 @@ public class ControlFlowGrapher
         }
 
         logVerbose("Writing "+outputFile.getAbsolutePath());
-            
+        
+        if ( ! outputFile.getParentFile().exists() ) {
+        	outputFile.getParentFile().mkdirs();
+        }
+        
         final PrintWriter writer = new PrintWriter( outputFile);
         writer.write( dot );
         writer.close();
