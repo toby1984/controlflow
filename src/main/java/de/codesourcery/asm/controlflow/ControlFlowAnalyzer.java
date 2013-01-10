@@ -271,7 +271,7 @@ public class ControlFlowAnalyzer
         return null;
     }    
 
-    // merge adjactent blocks
+    // merge adjacent blocks
     private List<IBlock> mergeBlocks(Map<Integer, IBlock> blocks, final MethodNode mn)
     {
         final List<Integer> lines = new ArrayList<>(blocks.keySet());

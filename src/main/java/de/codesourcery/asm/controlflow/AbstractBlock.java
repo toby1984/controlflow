@@ -37,7 +37,8 @@ public abstract class AbstractBlock implements IBlock
         
         final StringBuilder builder = new StringBuilder();
         
-        final ListIterator<AbstractInsnNode> iterator = method.instructions.iterator();
+        @SuppressWarnings("unchecked")
+		final ListIterator<AbstractInsnNode> iterator = method.instructions.iterator();
         for ( int index = 0; iterator.hasNext() ; index++ ) 
         {
             final AbstractInsnNode instruction = iterator.next();
@@ -64,7 +65,8 @@ public abstract class AbstractBlock implements IBlock
             return -1;
         }
         
-        final ListIterator<AbstractInsnNode> iterator = method.instructions.iterator();
+        @SuppressWarnings("unchecked")
+		final ListIterator<AbstractInsnNode> iterator = method.instructions.iterator();
         for ( int index = 0; iterator.hasNext() ; index++ ) 
         {
             final AbstractInsnNode instruction = iterator.next();
@@ -135,7 +137,8 @@ public abstract class AbstractBlock implements IBlock
     public int getByteCodeInstructionCount(MethodNode method) {
         
         final InsnList instructions = method.instructions;
-        final ListIterator<AbstractInsnNode> iterator = instructions.iterator();
+        @SuppressWarnings("unchecked")
+		final ListIterator<AbstractInsnNode> iterator = instructions.iterator();
         
         int count = 0;
         for ( int index = 0 ; iterator.hasNext() ; index++ ) 

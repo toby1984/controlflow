@@ -35,6 +35,7 @@ public class Disassembler
 	public static String disassemble(MethodNode method,boolean includeVirtual,boolean printInsnIndices) {
 	
 		final StringBuilder result = new StringBuilder();
+		@SuppressWarnings("unchecked")
 		final ListIterator<AbstractInsnNode> it = method.instructions.iterator();
 		while ( it.hasNext() ) {
 			AbstractInsnNode node = it.next();
