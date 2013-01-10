@@ -277,7 +277,7 @@ public class ProfilingRewriter implements Opcodes
      *   final ExecutionStatistics $stat = StatisticsManager#getStatistics();
      * </pre>
      * </p>
-     * @author tobias.gierke@voipfuture.com
+     * @author tobias.gierke@code-sourcery.de
      */
     protected final class LoadVarVisitor extends DeferredMethodVisitor {
 
