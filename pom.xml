@@ -157,6 +157,30 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
           <downloadSources>true</downloadSources>
         </configuration>
       </plugin>
+
+       <plugin>
+          <groupId>com.mycila.maven-license-plugin</groupId>
+          <artifactId>maven-license-plugin</artifactId>
+           <version>1.9.0</version>
+          <configuration>
+            <header>${basedir}/etc/license_header.txt</header>
+              <quiet>false</quiet>
+              <failIfMissing>true</failIfMissing>
+              <basedir>${basedir}/src</basedir>
+              <excludes>
+                <exclude>**/log4j.properties</exclude>
+              </excludes>
+          </configuration>
+          <executions>
+            <execution>
+              <phase>package</phase>
+                <goals>
+                  <goal>check</goal>
+               </goals>
+            </execution>
+          </executions>
+        </plugin>
+
 <!--
       <plugin>
        <groupId>org.codehaus.mojo</groupId>
