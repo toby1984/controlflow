@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: tgierke
+Build-Jdk: 1.7.0_09
+Premain-Class: de.codesourcery.asm.rewrite.ProfilingClassTransformer
+Main-Class: de.codesourcery.asm.controlflow.ControlFlowGrapher
+
