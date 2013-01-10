@@ -113,6 +113,9 @@ public class Disassembler
             case AbstractInsnNode.JUMP_INSN: // IFEQ, IFNE, IFLT, IFGE, IFGT, IFLE, IF_ICMPEQ,IF_ICMPNE, IF_ICMPLT, IF_ICMPGE, IF_ICMPGT, IF_ICMPLE,IF_ACMPEQ, IF_ACMPNE, GOTO, JSR, IFNULL or IFNONNULL
                 JumpInsnNode tmp4 = (JumpInsnNode) node;
                 int index = method.instructions.indexOf( tmp4.label );
+                while ( method.instructions.get( index ).getOpcode() == -1 ) {
+                	index++;
+                }
                 mnemonic += " "+ index;
                 break;
             case AbstractInsnNode.LDC_INSN: // load constant
