@@ -16,7 +16,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
   </licenses>
 
   <properties>
-    <asm.version>4.1</asm.version>
+    <asm.version>5.0.4</asm.version>
   </properties>
 
   <developers>
