@@ -7,6 +7,8 @@ This project actually contains two different applications:
 2. (work-in-progress) A Java instrumentation agent that utilizes control-flow analysis to inject
    bytecode for counting the number of executed bytecode instructions per thread
 
+![screenshot]()
+
 BUILDING
 --------
 
