@@ -48,7 +48,7 @@ public class ControlFlowGrapher
     
     private final ControlFlowAnalyzer analyzer = new ControlFlowAnalyzer();
 
-    public static void main(String[] args) throws Exception
+    public static void main(String[] args)
     {
         final ControlFlowGrapher main = new ControlFlowGrapher();
         try {
@@ -73,7 +73,7 @@ public class ControlFlowGrapher
                 "<CLASS NAME> => name of class to analyze\n\n");
     }
 
-    private static void applyArgs(ControlFlowGrapher main, String[] args) throws Exception
+    private static void applyArgs(ControlFlowGrapher main, String[] args)
     {
         for ( int i = 0 ; i < args.length ; i++) 
         {
