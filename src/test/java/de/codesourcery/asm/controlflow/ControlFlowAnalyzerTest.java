@@ -27,10 +27,19 @@ public class ControlFlowAnalyzerTest {
         for (Object m : cn.methods) {
             MethodNode mn = (MethodNode) m;
             if (! isConstructor(mn)) {
+                // TODO: Test structural properties
                 System.out.println("Constructing graph for " + mn.name);
                 final ControlFlowGraph graph = analyzer.analyze("Tests", mn);
-                System.out.println(graph);
+                if ("emptyBlock".equals(mn.name)) {
+                    assertEquals(5, graph.getAllNodes().size());
+                }
+                else if ("emptyBlockWithSideEffects".equals(mn.name)) {
+                    assertEquals(5, graph.getAllNodes().size());
+                } else if ("tripleAnd".equals(mn.name)) {
+                    assertEquals(8, graph.getAllNodes().size());
+                }
             }
+
         }
     }
 
