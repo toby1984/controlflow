@@ -1,0 +1,13 @@
+digraph "emptyBlock()" {
+    START [shape=ellipse,label="method_entry"]
+    "0_1_2_3" [shape=box,label="   2: ILOAD_1\l   3: IFGE 7\l"]
+    "9_10_11_12_13" [shape=box,label="  12: ILOAD_1\l  13: IRETURN\l"]
+    "4_5_6_7_8" [shape=box,label="   7: ILOAD_1\l   8: IFLE 12\l"]
+    END [shape=ellipse,label="method_exit"]
+    START -> "0_1_2_3" 
+    "0_1_2_3" -> "4_5_6_7_8" [label="true"]
+    "0_1_2_3" -> "4_5_6_7_8" [label="false"]
+    "9_10_11_12_13" -> END 
+    "4_5_6_7_8" -> "9_10_11_12_13" [label="true"]
+    "4_5_6_7_8" -> "9_10_11_12_13" [label="false"]
+}
