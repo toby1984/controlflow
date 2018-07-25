@@ -33,6 +33,28 @@ public class ControlFlowAnalyzerTest {
         return "<init>".equals(m.name);
     }
 
+    public static IBlock getFirstBlock(ControlFlowGraph graph) {
+        return graph.getStart().getRegularSuccessor();
+    }
+
+    private static IBlock getOutgoing(IBlock bb, String metadata) {
+        for (Edge edge : bb.getEdges()) {
+            if (edge.metaData != null && edge.metaData.equals(metadata)) {
+                return edge.dst;
+            }
+        }
+
+        return null;
+    }
+
+    public static IBlock getTrueOutgoing(IBlock bb) {
+        return getOutgoing(bb, "true");
+    }
+
+    public static IBlock getFalseOutgoing(IBlock bb) {
+        return getOutgoing(bb, "false");
+    }
+
     @Test
     public void testTests() throws Exception {
         ClassNode cn = readClass("Tests");
@@ -74,11 +96,42 @@ public class ControlFlowAnalyzerTest {
                     assertEquals(1, graph.getStart().getRegularSuccessorCount());
                     assertEquals(2, graph.getEnd().getRegularPredecessorCount());
 
-                    IBlock firstBlock = graph.getStart().getRegularSuccessor();
+                    IBlock firstBlock = getFirstBlock(graph);
                     assertEquals(2, firstBlock.getRegularSuccessorCount());
                 }
            }
        }
+    }
+
+    @Test
+    public void testEmptyBlock1() throws Exception {
+        String className = "EmptyBlock1";
+        ClassNode cn = readClass(className);
+
+        for (Object m : cn.methods) {
+            MethodNode mn = (MethodNode) m;
+            if (!isConstructor(mn)) {
+                ControlFlowAnalyzer analyzer = new ControlFlowAnalyzer();
+                final ControlFlowGraph graph = analyzer.analyze(className, mn);
+
+                if ("f".equals(mn.name)) {
+                    generateDOTFile(className, graph);
+
+                    assertEquals(6, graph.getAllNodes().size());
+                    assertEquals(1, graph.getStart().getRegularSuccessorCount());
+                    assertEquals(2, graph.getEnd().getRegularPredecessorCount());
+
+                    IBlock firstBlock = getFirstBlock(graph);
+                    IBlock firstBlockTrueOut = getTrueOutgoing(firstBlock);
+                    IBlock firstBlockFalseOut = getTrueOutgoing(firstBlock);
+                    assertNotNull(firstBlockTrueOut);
+                    assertNotNull(firstBlockFalseOut);
+
+                    assertEquals(getTrueOutgoing(firstBlockTrueOut), getFalseOutgoing(firstBlockTrueOut));
+                    assertEquals(getTrueOutgoing(firstBlockFalseOut), getFalseOutgoing(firstBlockFalseOut));
+                }
+            }
+        }
     }
 
     @Test
