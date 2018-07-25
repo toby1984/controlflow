@@ -261,8 +261,8 @@ public class ControlFlowAnalyzer
     private int getSuccessorCountIgnoringEndBlock(IBlock block) {
 
         int count = 0;
-        for ( IBlock b : block.getRegularSuccessors() ) {
-            if ( !( b instanceof MethodExit ) ) {
+        for (Edge e : block.getEdges()) {
+            if (block == e.src && ! (e.dst instanceof MethodExit)) {
                 count++;
             }
         }
