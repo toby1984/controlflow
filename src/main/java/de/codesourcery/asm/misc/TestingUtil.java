@@ -1,4 +1,4 @@
-package de.codesourcery.misc;
+package de.codesourcery.asm.misc;
 
 public class TestingUtil {
     public static final String ROOT = System.getProperty("user.dir");

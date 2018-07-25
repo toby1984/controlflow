@@ -1,5 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+cd "$DIR/../dot"
 for dotfile in `ls`; do
   filename=$(basename "$dotfile")
   extension="${filename##*.}"

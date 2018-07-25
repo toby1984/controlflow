@@ -1,16 +1,13 @@
 package de.codesourcery.asm.controlflow;
 
 import de.codesourcery.asm.util.ASMUtil;
-import de.codesourcery.misc.TestingUtil;
-import jdk.internal.org.objectweb.asm.tree.analysis.Analyzer;
+import de.codesourcery.asm.misc.TestingUtil;
 import org.junit.Test;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.MethodNode;
-import org.objectweb.asm.tree.analysis.AnalyzerException;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 
 import static org.junit.Assert.*;
 
@@ -28,7 +25,6 @@ public class ControlFlowAnalyzerTest {
             MethodNode mn = (MethodNode) m;
             if (! isConstructor(mn)) {
                 // TODO: Test structural properties
-                System.out.println("Constructing graph for " + mn.name);
                 final ControlFlowGraph graph = analyzer.analyze("Tests", mn);
                 if ("emptyBlock".equals(mn.name)) {
                     assertEquals(5, graph.getAllNodes().size());
@@ -36,7 +32,7 @@ public class ControlFlowAnalyzerTest {
                 else if ("emptyBlockWithSideEffects".equals(mn.name)) {
                     assertEquals(5, graph.getAllNodes().size());
                 } else if ("tripleAnd".equals(mn.name)) {
-                    assertEquals(8, graph.getAllNodes().size());
+                    assertEquals(9, graph.getAllNodes().size());
                 }
             }
 
@@ -44,7 +40,6 @@ public class ControlFlowAnalyzerTest {
     }
 
     public static boolean isConstructor(MethodNode m) {
-        System.out.println("name: " + m.name);
         return "<init>".equals(m.name);
     }
 }
