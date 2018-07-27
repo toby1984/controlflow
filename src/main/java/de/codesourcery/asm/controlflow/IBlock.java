@@ -270,4 +270,21 @@ public interface IBlock
      * @return
      */
     public String toString();
+
+    /**
+     * Store a property for later retrieval
+     * @param key key to index by
+     * @param property the object to store for retrieval
+     * @return old property if already present, {@code null} otherwise
+     */
+    public Object storeProperty(String key, Object property);
+
+    /**
+     * Return property associated with {@code key} if already present, {@code null}
+     * otherwise
+     * @param key the key indexing the property
+     * @return the cached property associated with {@code key} if it exists,
+     *         {@code null} otherwise
+     */
+    public Object getProperty(String key);
 }
