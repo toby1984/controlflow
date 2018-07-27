@@ -23,6 +23,8 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 import java.util.Set;
+import java.util.Map;
+import java.util.HashMap;
 
 import org.apache.commons.lang.StringUtils;
 import org.objectweb.asm.Opcodes;
@@ -46,6 +48,8 @@ public abstract class AbstractBlock implements IBlock
     
     protected final Set<Integer> instructions = new HashSet<>();  
     protected final Set<Edge> edges = new HashSet<>();
+
+    protected final Map<String, Object> properties = new HashMap<>();
     
     @Override
     public String disassemble(MethodNode method,boolean includeVirtual,boolean printInsnIndices) {
@@ -343,5 +347,15 @@ public abstract class AbstractBlock implements IBlock
         List<Integer> sorted = new ArrayList<>(instructions);
         Collections.sort(sorted);
         return StringUtils.join( sorted , "," );
+    }
+
+    @Override
+    public Object storeProperty(String key, Object property) {
+        return properties.put(key, property);
+    }
+
+    @Override
+    public Object getProperty(String key) {
+        return properties.get(key);
     }
 }
