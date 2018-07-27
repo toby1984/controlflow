@@ -1,0 +1,13 @@
+digraph "emptyBlockWithSideEffects()" {
+    "11_12_13_14_15" [shape=box,label="  14: ILOAD_1\l  15: IRETURN\l"]
+    END [shape=ellipse,label="method_exit"]
+    START [shape=ellipse,label="method_entry"]
+    "0_1_2_3_4" [shape=box,label="   2: IINC 1 , 1\l   3: ILOAD_1\l   4: IFGE 8\l"]
+    "5_6_7_8_9_10" [shape=box,label="   8: IINC 1 , 1\l   9: ILOAD_1\l  10: IFLE 14\l"]
+    "11_12_13_14_15" -> END 
+    START -> "0_1_2_3_4" 
+    "0_1_2_3_4" -> "5_6_7_8_9_10" [label="true"]
+    "0_1_2_3_4" -> "5_6_7_8_9_10" [label="false"]
+    "5_6_7_8_9_10" -> "11_12_13_14_15" [label="false"]
+    "5_6_7_8_9_10" -> "11_12_13_14_15" [label="true"]
+}
